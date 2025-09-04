@@ -29,6 +29,10 @@
     };
   }
 
+  // Khai báo biến toàn cục
+  let lastScrollY = 0;
+  let ticking = false;
+
   // Enhanced Navigation Glass Effects with Fixed Header
   function initGlassNavigation() {
     const header = document.getElementById("siteHeader");
@@ -58,13 +62,13 @@
 
       // Add smooth hide/show on scroll direction
       if (window.scrollY > 100) {
-        if (window.scrollY > this.lastScrollY && window.scrollY > 200) {
+        if (window.scrollY > lastScrollY && window.scrollY > 200) {
           header.style.transform = "translateY(-100%)";
         } else {
           header.style.transform = "translateY(0)";
         }
       }
-      this.lastScrollY = window.scrollY;
+      lastScrollY = window.scrollY;
     }, 16);
 
     // Initialize scroll position tracking
@@ -222,6 +226,41 @@
       });
   }
 
+  // api call Paradise
+  document.getElementById("contactForm").addEventListener("submit", async function (e) {
+    e.preventDefault(); // chặn form gửi mặc định
+
+    // lấy dữ liệu từ form
+    const formData = new FormData(this);
+    const dataObj = Object.fromEntries(formData.entries());
+
+    // chuẩn bị payload API riêng
+    const tmpData = {
+      "user": "vts",
+      "password": "72DDDA273A2D384869778E2DCBB851E106BFE1DC5B0B751C81D924772C286B02741639A14445A218A6BA86517987BA0982BC8D7B86BB4FD92CD1C1978A34105D",
+      "name": "sp_MachinetblMachineType",
+      "param": [] // có thể push dataObj nếu muốn gửi thông tin form
+    };
+
+    try {
+      const response = await fetch('https://paradisehrm.com/Beta/api/hpa/Paradise', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(tmpData)
+      });
+
+      if (!response.ok) throw new Error("HTTP " + response.status);
+
+      const result = await response.json();
+      console.log("✅ API result:", result);
+
+      alert("Gửi liên hệ thành công!");
+    } catch (err) {
+      console.error("❌ API error:", err);
+      alert("Có lỗi xảy ra khi gửi liên hệ!");
+    }
+  });
+
   // Mobile Menu Enhancement
   function initMobileMenu() {
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
@@ -239,7 +278,7 @@
       } else {
         mobileMenu.classList.add("menu-open");
         mobileMenuBtn.setAttribute("aria-expanded", "true");
-        document.body.style.overflow = "hidden";
+        // document.body.style.overflow = "hidden";
       }
     });
 
@@ -331,9 +370,8 @@
   // Notification System
   function showNotification(message, type = "info") {
     const notification = document.createElement("div");
-    notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg glass-card max-w-sm ${
-      type === "success" ? "border-green-400" : "border-blue-400"
-    }`;
+    notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg glass-card max-w-sm ${type === "success" ? "border-green-400" : "border-blue-400"
+      }`;
     notification.innerHTML = `
             <div class="flex items-center justify-between">
                 <span class="text-sm font-medium">${message}</span>

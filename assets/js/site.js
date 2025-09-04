@@ -3,6 +3,93 @@
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Detect OS and show appropriate app store buttons
+  function detectOS() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (/android/i.test(userAgent)) {
+      return 'android';
+    } else if (/iphone|ipad|ipod/i.test(userAgent)) {
+      return 'ios';
+    }
+    return 'desktop';
+  }
+
+  document.getElementById('compose_email')?.addEventListener('click', function (e) {
+    e.preventDefault();
+    const email = "sales@phanmemtinhluong.com";
+    const subject = "Yêu cầu tư vấn HRM";
+    const body = "Chào anh/chị,\nTôi muốn được tư vấn thêm về phần mềm chấm công và tính lương Vào Ca.\nXin cảm ơn!";
+
+    // Kiểm tra thiết bị
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    let mailtoUrl;
+    if (isMobile) {
+      // Đối với thiết bị di động, sử dụng mailto: scheme
+      mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Nếu là Android, thử mở trong ứng dụng Gmail
+      if (/Android/i.test(navigator.userAgent)) {
+        mailtoUrl = `googlegmail://co?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+      // Nếu là iOS, thử mở trong ứng dụng Mail
+      else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        mailtoUrl = `message://compose?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }
+    } else {
+      // Đối với desktop, sử dụng Gmail web
+      mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    // Mở link email
+    window.location.href = mailtoUrl;
+  });
+
+
+  document.getElementById('contactForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    const res = await fetch(form.action, {
+      method: form.method,
+      body: data
+    });
+
+    const json = await res.json();
+
+    if (json.success) {      
+      form.reset();
+    } 
+  });
+
+
+
+
+  // Show/hide app store buttons based on OS
+  function updateAppStoreButtons() {
+    const os = detectOS();
+    const googlePlayBtn = document.getElementById('google-play-btn');
+    const appStoreBtn = document.getElementById('app-store-btn');
+
+    if (googlePlayBtn && appStoreBtn) {
+      if (os === 'android') {
+        googlePlayBtn.style.cssText = 'display: flex !important';
+        appStoreBtn.style.cssText = 'display: none !important';
+      } else if (os === 'ios') {
+        googlePlayBtn.style.cssText = 'display: none !important';
+        appStoreBtn.style.cssText = 'display: flex !important';
+      } else {
+        googlePlayBtn.style.cssText = 'display: flex !important';
+        appStoreBtn.style.cssText = 'display: flex !important';
+      }
+    }
+  }
+
+  // Call the function when the page loads
+  updateAppStoreButtons();
+
   // Enhanced header scroll animation
   const header = document.getElementById("siteHeader");
   const scrollIndicator = document.getElementById("scrollIndicator");
@@ -152,30 +239,13 @@
 document.querySelectorAll("form").forEach((f) => {
   f.addEventListener("submit", (e) => {
     e.preventDefault();
-    let tmpData = {
-    "user": "vts",
-    "password": "72DDDA273A2D384869778E2DCBB851E106BFE1DC5B0B751C81D924772C286B02741639A14445A218A6BA86517987BA0982BC8D7B86BB4FD92CD1C1978A34105D",
-    "name": "sp_MachinetblMachineType",
-    "param": [] 
-}
-$.ajax({
-    url: 'https://paradisehrm.com/ParadiseHRMUp/api/hpa/Paradise',
-    type: "POST",
-    cache: false,
-    data: JSON.stringify(tmpData),
-    success: function (data) {
-      alert(data)
-    },
-    error: function (error) {
-    }
-})
     const btn = f.querySelector('button[type="submit"]');
     if (!btn) return;
     const old = btn.innerHTML;
     btn.innerHTML = "Đang gửi...";
     setTimeout(() => {
       btn.innerHTML = "Gửi liên hệ";
-      alert("Cám ơn! Yêu cầu đã được gửi");
+      alert("Gửi thành công");
       f.reset();
     }, 900);
   });
@@ -222,7 +292,7 @@ $.ajax({
       // warn the user and skip attempting fetch to avoid noisy errors
       try {
         showFileProtocolWarning();
-      } catch (e) {}
+      } catch (e) { }
       return;
     }
     for (const l of ["vi", "en"]) {
@@ -302,7 +372,7 @@ $.ajax({
     // ensure brand gradient persists after any text replacement
     try {
       preserveGradientTitle();
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // ensure the brand wordmark keeps gradient styling even after translations replace innerText
@@ -350,9 +420,8 @@ $.ajax({
                 <div id="mobileOverlay" class="absolute inset-0 glass-overlay-dark transition-opacity duration-300 opacity-0"></div>
                 <div class="absolute right-0 top-0 h-full w-4/5 max-w-xs glass-mobile-menu p-6 shadow-lg overflow-auto transform translate-x-full transition-transform duration-300">
                     <div class="flex items-center justify-between mb-6">
-                        <a href="#" class="flex items-center gap-3">${
-                          document.querySelector('a[href="#"]')?.innerHTML || ""
-                        }</a>
+                        <a href="#" class="flex items-center gap-3">${document.querySelector('a[href="#"]')?.innerHTML || ""
+      }</a>
                         <button id="mobileCloseBtn" aria-label="Đóng menu" class="p-2 rounded-md glass-btn">✕</button>
                     </div>
                     <nav class="flex flex-col gap-4" aria-label="Mobile navigation">
@@ -368,57 +437,54 @@ $.ajax({
     // initial closed state: ensure pointer-events are off
     mobileMenuEl.classList.remove("menu-open");
   }
+  let isMenuOpen = false;
+
   function openMobile() {
+    if (isMenuOpen) return;
     ensureMobileMenu();
-    // enable scrolling block immediately
-    document.body.style.overflow = "hidden";
-    // show menu with animation
+    isMenuOpen = true;
+
+    // Show menu with animation
     requestAnimationFrame(() => {
+      // document.body.style.overflow = "hidden";
       mobileMenuEl.classList.add("menu-open");
       mobileBtn?.setAttribute("aria-expanded", "true");
-      const first = mobileMenuEl.querySelector("nav a");
-      if (first) first.focus();
     });
   }
 
   function closeMobile() {
-    if (!mobileMenuEl) return;
-    // start close animation
+    if (!mobileMenuEl || !isMenuOpen) return;
+
+    isMenuOpen = false;
     mobileMenuEl.classList.remove("menu-open");
     mobileBtn?.setAttribute("aria-expanded", "false");
-    // wait for panel transition to finish before restoring body scroll
-    const panel = mobileMenuEl.querySelector(".transform");
-    if (panel) {
-      const onEnd = (e) => {
-        if (e.target !== panel) return;
-        panel.removeEventListener("transitionend", onEnd);
-        document.body.style.overflow = "";
-        mobileBtn?.focus();
-      };
-      panel.addEventListener("transitionend", onEnd);
-      // fallback timeout in case transitionend doesn't fire
-      setTimeout(() => {
-        document.body.style.overflow = "";
-        mobileBtn?.focus();
-      }, 400);
-    } else {
-      document.body.style.overflow = "";
-      mobileBtn?.focus();
-    }
+    document.body.style.overflow = "";
+
+    // Delay removing class to allow animation
+    setTimeout(() => {
+      if (!isMenuOpen) {
+        mobileMenuEl.classList.remove("menu-open");
+      }
+    }, 300);
   }
 
   document.addEventListener("click", (e) => {
-    if (
-      e.target &&
-      (e.target.id === "mobileMenuBtn" ||
-        (e.target.closest && e.target.closest("#mobileMenuBtn")))
-    ) {
-      openMobile();
+    // Handle menu button click
+    if (e.target && (e.target.id === "mobileMenuBtn" || e.target.closest("#mobileMenuBtn"))) {
+      if (isMenuOpen) {
+        closeMobile();
+      } else {
+        openMobile();
+      }
     }
-    if (
-      e.target &&
-      (e.target.id === "mobileCloseBtn" || e.target.id === "mobileOverlay")
-    ) {
+
+    // Handle close button and overlay clicks
+    if (e.target && (e.target.id === "mobileCloseBtn" || e.target.id === "mobileOverlay")) {
+      closeMobile();
+    }
+
+    // Close menu when clicking outside
+    if (isMenuOpen && !e.target.closest(".mobile-nav-menu") && !e.target.closest("#mobileMenuBtn")) {
       closeMobile();
     }
   });

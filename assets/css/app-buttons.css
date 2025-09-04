@@ -1,0 +1,227 @@
+.contactPhone {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.button {
+    display: flex !important;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.button .icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button .icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.button-text {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.button-text span:first-child {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.button-text span:last-child {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .contactPhone {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 580px) {
+    .vc-highlight--left {
+        left: -31%
+    }
+
+    .vc-highlight--bottom-left {
+        left: -31%;
+    }
+
+    .vc-highlight--right-bottom {
+        right: -5%;
+    }
+
+    .vc-highlight--right-mid {
+        top: 31%;
+        right: -40%;
+    }
+
+    .vc-highlight--top-right {
+        top: 5%;
+        right: -40%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .vc-highlight--top-left {
+        left: -15%;
+        top: 15%;
+    }
+
+    .vc-highlight--top-right {
+        top: 28%;
+        right: -15%;
+    }
+
+    .vc-highlight--left {
+        left: -15%;
+        top: 42%;
+    }
+
+    .vc-highlight--right-mid {
+        top: 57%;
+        right: -16%;
+    }
+
+    .vc-highlight--bottom-left {
+        left: -15%;
+        bottom: 19%;
+    }
+
+}
+
+@media (min-width: 650px) and (max-width: 767px) {
+    .vc-highlight--top-left {
+        left: -15%;
+        top: 5%;
+    }
+
+    .vc-highlight--top-right {
+        top: 8%;
+        right: -15%;
+    }
+
+    .vc-highlight--left {
+        left: -15%;
+        top: 13%;
+    }
+
+    .vc-highlight--right-mid {
+        top: 18%;
+        right: -16%;
+    }
+
+    .vc-highlight--bottom-left {
+        left: -15%;
+        bottom: 74%;
+    }
+
+    .vc-highlight--right-bottom {
+        bottom: 69%;
+        right: -25%;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+        .vc-highlight--top-left {
+        left: -15%;
+        top: 10%;
+    }
+
+	    .vc-highlight--left {
+        left: -15%;
+        top: 20%;
+    }
+
+	    .vc-highlight--bottom-left {
+        left: -15%;
+        bottom: 65%;
+    }
+
+    .vc-highlight--top-right {
+        top: 49%;
+        right: -13%;
+    }
+
+	.vc-highlight--right-mid {
+        top: 60%;
+        right: -35%;
+    }
+	    .vc-highlight--right-bottom {
+        bottom: 23%;
+        right: -47%;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1290px) {
+    .vc-highlight--top-left {
+        left: -10%;
+        top: 10%;
+    }
+
+    .vc-highlight--left {
+        left: -11%;
+        top: 20%;
+    }
+
+    .vc-highlight--bottom-left {
+        left: -10%;
+        bottom: 64%;
+    }
+
+    .vc-highlight--top-right {
+        top: 41%;
+        right: -5%;
+    }
+
+    .vc-highlight--right-bottom {
+        bottom: 45%;
+        right: -5%;
+    }
+
+    .vc-highlight--right-mid {
+        top: 60%;
+        right: -5%;
+    }
+}
+
+@media(max-width:750px) {
+    .vc-highlight {
+        background: linear-gradient(137deg, rgb(119 108 108) 0%, rgb(0 0 0 / 83%) 25%, rgb(0 0 0 / 58%) 50%, rgb(0 0 0 / 69%) 75%, rgb(0 0 0 / 20%) 100% 100%);
+    }
+}
+
+@media(min-width:751px) {
+    .vc-highlight {
+        background: linear-gradient(137deg, rgb(115 104 104) 0%, rgb(129 129 129 / 83%) 25%, rgb(161 147 147 / 58%) 50%, rgb(87 87 87 / 69%) 75%, rgb(0 0 0 / 20%) 100% 100%);
+    }
+}
+
+/* icon */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .img-effective{
+        margin-top: -5% !important;
+    }
+
+}
