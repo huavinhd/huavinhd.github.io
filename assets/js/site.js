@@ -152,13 +152,30 @@
 document.querySelectorAll("form").forEach((f) => {
   f.addEventListener("submit", (e) => {
     e.preventDefault();
+    let tmpData = {
+    "user": "vts",
+    "password": "72DDDA273A2D384869778E2DCBB851E106BFE1DC5B0B751C81D924772C286B02741639A14445A218A6BA86517987BA0982BC8D7B86BB4FD92CD1C1978A34105D",
+    "name": "sp_MachinetblMachineType",
+    "param": [] 
+}
+$.ajax({
+    url: 'https://paradisehrm.com/ParadiseHRMUp/api/hpa/Paradise',
+    type: "POST",
+    cache: false,
+    data: JSON.stringify(tmpData),
+    success: function (data) {
+      alert(data)
+    },
+    error: function (error) {
+    }
+})
     const btn = f.querySelector('button[type="submit"]');
     if (!btn) return;
     const old = btn.innerHTML;
     btn.innerHTML = "Đang gửi...";
     setTimeout(() => {
       btn.innerHTML = "Gửi liên hệ";
-      alert("Cám ơn! Yêu cầu đã được gửi (demo).");
+      alert("Cám ơn! Yêu cầu đã được gửi");
       f.reset();
     }, 900);
   });
