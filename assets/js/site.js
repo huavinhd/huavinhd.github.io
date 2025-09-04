@@ -47,21 +47,31 @@
 
   document.getElementById('contactForm').addEventListener('submit', async function (e) {
     e.preventDefault();
+    var formFields = ['name', 'email', 'phone', 'company', 'content'];
 
-    // lấy dữ liệu từ form
     const formData = new FormData(this);
-    const dataObj = Object.fromEntries(formData.entries());
+    const dataObj = {};
 
-    // chuẩn bị payload API riêng
+    // map message → content
+    formFields.forEach(field => {
+      if (field === 'content') {
+        dataObj['content'] = formData.get('message') || "";
+      } else {
+        dataObj[field] = formData.get(field) || "";
+      }
+    });
+
+    let jsonString = JSON.stringify(dataObj);
+
     const tmpData = {
-      "user": "vts",
-      "password": "72DDDA273A2D384869778E2DCBB851E106BFE1DC5B0B751C81D924772C286B02741639A14445A218A6BA86517987BA0982BC8D7B86BB4FD92CD1C1978A34105D",
-      "name": "sp_MachinetblMachineType",
-      "param": [] // có thể push dataObj nếu muốn gửi thông tin form
+      "user": "adminApi",
+      "password": "1ECCB611504F591740CFFFF9B46044CBF506A73B965775E6B2EB0088A15FEDDAA485D8790EFE599231C21A10FEF5D67F15F0725B2F56347DB328B3F59C907621",
+      "name": "sp_ContactCustommer_Update",
+      "param": ['IDInput2', jsonString]
     };
 
     try {
-      const response = await fetch('https://paradisehrm.com/Beta/api/hpa/Paradise', {
+      const response = await fetch('https://paradisehrm.com/vietinsoft/api/hpa/Paradise', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tmpData)
