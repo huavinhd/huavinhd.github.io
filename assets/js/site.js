@@ -101,9 +101,6 @@
     }
   });
 
-
-
-
   // Show/hide app store buttons based on OS
   function updateAppStoreButtons() {
     const os = detectOS();
