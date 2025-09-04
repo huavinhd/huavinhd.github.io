@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Vào Ca – Ứng dụng quản lý chấm công & ca làm việc tối ưu cho doanh nghiệp." />
+    <title>VaoCa — App Mobile HRM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/images/VaoCa_simpleLG.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./assets/css/glassmorphism.css" />
+    <script src="assets/js/tailwind-cdn-3.4.17.js"></script>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Vào Ca">
+    
+    <!-- Android Chrome Status Bar & Address Bar -->
+    <meta name="theme-color" content="#004c39">
+    <meta name="color-scheme" content="dark">
+    
+    <!-- Microsoft Edge & Windows
+    <meta name="msapplication-navbutton-color" content="#004c39">
+    <meta name="msapplication-TileColor" content="#004c39">
+     -->
+    <!-- General Mobile Optimization -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Vào Ca">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./assets/images/VaoCa_simpleLG.svg">
+</head>
+
+<body class="text-white">
+
+    <!-- NAV -->
+    <header id="siteHeader" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-18">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="flex items-center gap-3 group">
+                        <img class="h-10 md:h-12 lg:h-10 transition-transform duration-300 group-hover:scale-105"
+                            src="./assets/images/VaoCaLogo.svg" alt="VaoCa Logo">
+                    </a>
+                </div>
+
+                <!-- Right side - Navigation, Language selector and Mobile menu -->
+                <div class="flex items-center space-x-2">
+                    <!-- Desktop Navigation -->
+                    <nav class="hidden lg:flex items-center space-x-4" role="navigation" aria-label="Main navigation">
+                        <a href="#features" class="nav-link" data-i18n="nav.features">Tính năng</a>
+                        <a href="#how" class="nav-link" data-i18n="nav.how">Cách hoạt động</a>
+                        <a href="#customers" class="nav-link" data-i18n="nav.customers">Khách hàng</a>
+                        <a href="#contact" class="nav-link" data-i18n="nav.contact">Báo giá và liên hệ</a>
+                        <a href="#aboutUs" class="nav-link" data-i18n="nav.about">Về chúng tôi</a>
+                    </nav>
+
+                    <!-- Language selector -->
+                    <select id="langSelect" aria-label="Chọn ngôn ngữ"
+                        class="text-white bg-transparent border border-white/30 rounded-lg px-3 py-2 text-sm focus:border-white/50 transition-colors outline-none">
+                        <option value="vi" class="text-gray-800 bg-gray-100">Tiếng Việt</option>
+                        <option value="en" class="text-gray-800 bg-gray-100">English</option>
+                    </select>
+
+                    <!-- Mobile hamburger button -->
+                    <button id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Mở menu"
+                        class="lg:hidden p-2 text-white hover:text-gray-300 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav-menu lg:hidden" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#features" class="block nav-link p-4 text-center" data-i18n="nav.features">Tính
+                    năng</a>
+                <a href="#how" class="block nav-link p-4 text-center" data-i18n="nav.how">Cách hoạt động</a>
+                <a href="#customers" class="block nav-link p-4 text-center" data-i18n="nav.customers">Khách
+                    hàng</a>
+                <a href="#aboutUs" class="block nav-link p-4 text-center" data-i18n="nav.about">Về chúng
+                    tôi</a>
+
+                <div class="mt-6 pt-6 border-t border-white/20">
+                    <select id="langSelectMobile" aria-label="Chọn ngôn ngữ"
+                        class="w-full glass-input text-white bg-transparent rounded-lg px-4 py-3 text-base border-white/30">
+                        <option value="vi" class="text-gray-800">Tiếng Việt</option>
+                        <option value="en" class="text-gray-800">English</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="min-h-screen flex flex-col justify-center items-center relative overflow-hidden"
+        style="background: var(--dark-gradient);">
+
+        <!-- Glass overlay for depth with dark theme -->
+        <div class="absolute inset-0 glass-hero-overlay"></div>
+
+        <div
+            class="absolute left-0 bottom-20 pointer-events-none z-0 flex items-end justify-start pl-0 md:pl-6 pb-0 md:pb-0">
+            <img class="w-[100%] h-auto opacity-30 -translate-x-2 md:-translate-x-4" src="./assets/images/map.svg"
+                alt="Map SVG">
+        </div>
+        <div
+            class="max-w-6xl w-full px-6 py-12 flex flex-col-reverse md:flex-row items-center gap-10 relative z-20 mt-10">
+            <div class="flex-1 text-center md:text-left max-w-lg md:max-w-xl mx-auto md:mx-0">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-relaxed text-white animate-slide-left"
+                    data-i18n="hero.title">
+                    <span class="text-brand">Vào
+                        Ca</span> — Giải pháp nhân sự
+                    tinh gọn dành cho SME
+                </h1>
+                <p class="mt-6 text-base sm:text-lg max-w-md mx-auto md:mx-0 leading-relaxed text-white/80 animate-slide-left animate-delay-200"
+                    data-i18n="hero.subtitle">
+                    Giải pháp chuyển đổi số toàn bộ quy trình nhân sự dành cho các doanh nghiệp vừa và nhỏ với quy mô
+                    nhân sự dưới 50 người. Vào Ca giúp bạn
+                    quản trị nhân sự nhanh chóng, hiệu quả và tối ưu trên một ứng dụng điện thoại duy nhất.</p>
+                <div
+                    class="mt-8 flex flex-row flex-wrap gap-4 justify-center md:justify-start animate-slide-left animate-delay-400">
+                    <a href="#" class="cta-btn-special interactive-glow rounded-[3rem]" aria-label="Tải ngay — Vào Ca"
+                        data-i18n="hero.download">Tải ngay</a>
+                    <a href="#contact"
+                        class="glass-btn-outline px-[2rem] py-[1rem] rounded-[3rem] font-semibold text-lg interactive-glow"
+                        aria-label="Nhận tư vấn — Vào Ca" data-i18n="hero.consult">Nhận tư vấn</a>
+                </div>
+            </div>
+
+            <div class="flex-1 flex justify-center relative animate-slide-right">
+                <!-- App mockup with glass container -->
+                <div class="relative">
+                    <div class="glass-card p-4 rounded-[52px]">
+                        <img src="./assets/images/vc-dashboard.png" alt="App mockup" data-i18n-alt="img.app_mockup"
+                            class="w-48 sm:w-64 md:w-72 rounded-[48px] shadow-2xl" />
+                    </div>
+
+                    <!-- Enhanced glass highlights around the mockup -->
+                    <div class="vc-highlight glass-silver vc-highlight--top-left glass-card-dark text-white">Số hoá<br>
+                        hồ sơ nhân sự
+                    </div>
+                    <div class="vc-highlight vc-highlight--left glass-card-dark text-white">Chấm công<br> mọi lúc mọi
+                        nơi</div>
+                    <div class="vc-highlight vc-highlight--bottom-left glass-card-dark text-white">Tự động hoá <br> quy
+                        trình tính lương</div>
+                    <div class="vc-highlight vc-highlight--top-right glass-card-dark text-white">Kết nối<br> nhân sự
+                        nhanh chóng
+                    </div>
+                    <div class="vc-highlight vc-highlight--right-mid glass-card-dark text-white">Chuyển đổi số<br> toàn
+                        bộ quy trình nhân sự</div>
+                    <div class="vc-highlight vc-highlight--right-bottom glass-card-dark text-white">Toàn diện<br> 6 quy
+                        trình nhân sự trên 1 ứng dụng</div>
+
+                    <!-- small device screenshots with glass effect -->
+                    <div class="hidden sm:block absolute -left-24 -bottom-8 glass-card p-2 rounded-2xl rotate-3">
+                        <img src="./assets/images/gps.PNG" alt="" data-i18n-alt="img.screen1"
+                            class="sm:w-40 md:w-32 rounded-xl" />
+                    </div>
+                    <div class="hidden sm:block absolute -right-10 -top-10 glass-card p-2 rounded-2xl -rotate-3">
+                        <img src="./assets/images/gpsSettings.PNG" alt="" data-i18n-alt="img.screen2"
+                            class="w-24 sm:w-32 md:w-24 rounded-xl" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- subtle decorative shapes -->
+        <!-- Asymmetric decorative SVG (user-supplied) anchored to the right, non-interactive -->
+        <div class="absolute right-0 top-20 pointer-events-none z-0 flex items-start justify-end pr-0 md:pr-12">
+            <img class="w-[50%] md:w-[50%] opacity-20 rotate-6 translate-y-0 translate-x-2 filter"
+                src="./assets/images/phone.svg" alt="Phone">
+        </div>
+
+        <svg class="absolute right-0 bottom-0 opacity-10 w-72" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#E6F2EF"
+                d="M40,-38C53.1,-24.7,67.6,-11.7,69.4,2.2C71.3,16.1,60.4,31.8,46.5,41.3C32.5,50.8,15.4,54.9,1.1,53C-13.3,51.1,-26.6,43.2,-37.3,32.1C-48,21.1,-56,6.8,-57.4,-8.6C-58.9,-24,-53.8,-40.4,-41.1,-53.1C-28.5,-65.9,-14.3,-75.1,-0.3,-74.7C13.7,-74.3,27.5,-64.7,40,-38Z"
+                transform="translate(100 100)" />
+        </svg>
+    </section>
+
+    <!-- ABOUT (copied from introduce) -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">GIẢI PHÁP CHUYỂN ĐỔI SỐ TIẾT KIỆM CHI PHÍ #1
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Được tối ưu, tinh gọn để phù hợp với doanh nghiệp vừa và nhỏ tại Việt Nam
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div class="w-18 h-18 bg-gradient-to-br from-vietin-bright to-vietin-light rounded-xl flex items-center justify-left mb-6
+                    group-hover:rotate-12 transition-transform">
+                        <img style="margin-top:-10%;max-width:40%;" src="./assets/images/money.png" alt="Tiết kiệm">
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Tiết kiệm</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Cam kết mang đến giải pháp chất lượng nhưng chi phí tiết kiệm nhất phù hợp với doanh nghiệp Việt.
+                    </p>
+                </div>
+
+                <!-- Vision Card -->
+                <div class="glass-card rounded-2xl p-8 group">
+                    <div
+                        class="w-18 h-18 bg-gradient-to-br from-vietin-bright to-vietin-light rounded-xl flex items-center justify-left mb-6 group-hover:rotate-12 transition-transform">
+                        <img style="margin-top:-10%;max-width:50%; margin-bottom: 5%;" src="./assets/images/effective.png" alt="Tối ưu">
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Tối ưu</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Giải pháp tối ưu cho bạn khi mà toàn bộ quy trình nhân sự được số hoá, tự động trên chính chiếc điện thoại của bạn.
+                    </p>
+                </div>
+
+                <!-- Values Card -->
+                <div class="glass-card rounded-2xl p-8 group md:col-span-2 lg:col-span-1">
+                    <div
+                        class="w-17 h-17 bg-gradient-to-br from-vietin-bright to-vietin-light rounded-xl flex items-center justify-left mb-6 group-hover:rotate-12 transition-transform">
+                        <img style="margin-top:-10%;max-width:40%;" src="./assets/images/chart.png" alt="Hiệu quả">
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Hiệu quả</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Quy trình nhân sự được tinh gọn từ quy trình nhân sự của hệ thống phần mềm lớn, đảm bảo hoạt động hiệu quả, mang đến kết quả tốt nhất cho doanh nghiệp
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="glass-card rounded-2xl p-8 md:p-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-vietin-bright mb-2">100+</div>
+                        <div class="text-gray-300">Doanh nghiệp tin tưởng sử dụng</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-vietin-bright mb-2">5K+</div>
+                        <div class="text-gray-300">Người dùng ứng dụng</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-vietin-bright mb-2">40%</div>
+                        <div class="text-gray-300">Tiết kiệm thời gian</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-vietin-bright mb-2">24/7</div>
+                        <div class="text-gray-300">Đội ngũ kỹ thuật nhiệt tình</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES (glass card overlapping hero) -->
+    <section id="features" class="max-w-6xl mx-auto px-4 relative z-30 section-with-bg">
+        <div class="p-8 sm:p-12 rounded-3xl">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Quy trình nhân sự toàn diện</h2>
+                <p class="text-lg text-white/80 max-w-2xl mx-auto">Giải pháp quản lý nhân sự hoàn chỉnh với 6 quy trình chặt chẽ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
+                        <img src="./assets/images/groupEmp.svg" alt="Profile">
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3 mt-2">Hồ sơ nhân sự</h3>
+                    <p class="text-white/70 text-sm leading-relaxed mb-4">Tích hợp quét NFC thẻ căn cước, quản lý thông
+                        tin nhân sự một cách dễ dàng, chính xác nhất.</p>
+                    <a href="#" class="feature-link-modern">Tìm hiểu thêm →</a>
+                </div>
+
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
+                        <img src="./assets/images/calender.svg" alt="Calender">
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3 mt-2">Quản lý chấm công</h3>
+                    <p class="text-white/70 text-sm leading-relaxed mb-4">Quản lý ca, giờ làm việc, tăng ca, nghỉ phép,
+                        đi trễ về sớm linh động theo thiết lập phù hợp với mọi doanh nghiệp.</p>
+                    <a href="#" class="feature-link-modern">Tìm hiểu thêm →</a>
+                </div>
+
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
+                        <img src="./assets/images/timekeeper.svg" alt="Machine">
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3 mt-2">Kết nối máy chấm công</h3>
+                    <p class="text-white/70 text-sm leading-relaxed mb-4">Kết nối với máy chấm công để lưu trữ tính toán
+                        dữ liệu chấm công. Thao tác lệnh máy chấm công từ xa trên điện thoại tiện lợi, dễ dàng.</p>
+                    <a href="#" class="feature-link-modern">Tìm hiểu thêm →</a>
+                </div>
+
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
+                        <img src="./assets/images/payroll.svg" alt="Salary">
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3 mt-2">Tính lương</h3>
+                    <p class="text-white/70 text-sm leading-relaxed mb-4">Quy trình tính lương đơn giản, nhanh chóng,
+                        chính xác. Các công thức lương, thuế, bảo hiểm được xử lý tự động với một lần chạm.</p>
+                    <a href="#" class="feature-link-modern">Tìm hiểu thêm →</a>
+                </div>
+
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
+                        <img src="./assets/images/gps.svg" alt="GPS">
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3 mt-2">Chấm công GPS</h3>
+                    <p class="text-white/70 text-sm leading-relaxed mb-4">Chấm công xác thực địa điểm, trùng khớp khuôn
+                        mặt với độ chính xác cao đáp ứng mọi yêu cầu chấm công linh hoạt.</p>
+                    <a href="#" class="feature-link-modern">Tìm hiểu thêm →</a>
+                </div>
+
+                <div class="feature-card-modern">
+                    <div class="feature-icon-modern">
+                        <img src="./assets/images/ess.svg" alt="ESS">
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-3 mt-2">ESS - Kết nối nhân sự</h3>
+                    <p class="text-white/70 text-sm leading-relaxed mb-4">Quy trình ký - duyệt minh bạch, loại đơn đăng
+                        ký đa dạng, quản lý kết nối giữa nhân viên và ban quản lý.</p>
+                    <a href="#" class="feature-link-modern">Tìm hiểu thêm →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- HOW IT WORKS / USE CASES -->
+    <section id="how" class="max-w-6xl mx-auto px-4 py-16">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-12 text-brand" data-i18n="how.title">Ai sẽ sử dụng ứng dụng Vào Ca</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="font-bold text-xl mb-4 text-brand" data-i18n="how.for_managers.title">Dành cho lãnh đạo, chủ doanh nghiệp
+                </h3>
+                <p class="text-white/70 mb-6 leading-relaxed" data-i18n="how.for_managers.desc">Quản lý toàn bộ quy trình nhân sự trên ứng dụng.</p>
+                <ol class="list-decimal list-inside text-white/80 space-y-3">
+                    <li class="pl-2">Theo dõi dữ liệu nhân viên, dữ liệu công, lương của doanh nghiệp</li>
+                    <li class="pl-2">Duyệt & theo dõi nhân viên trực tiếp</li>
+                    <li class="pl-2">Xuất báo cáo hàng tháng, hàng năm</li>
+                </ol>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="font-bold text-xl mb-4 text-brand" data-i18n="how.for_managers.title">Dành cho Quản lý
+                </h3>
+                <p class="text-white/70 mb-6 leading-relaxed" data-i18n="how.for_managers.desc">Tạo ca, phân công nhân
+                    viên,
+                    duyệt đơn nghỉ và theo dõi báo cáo
+                    tổng hợp trên điện thoại hoặc web.</p>
+                <ol class="list-decimal list-inside text-white/80 space-y-3">
+                    <li class="pl-2">Thiết lập lịch ca nhanh chóng</li>
+                    <li class="pl-2">Duyệt & theo dõi phép trực tiếp</li>
+                </ol>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl">
+                <h3 class="font-bold text-xl mb-4 text-brand" data-i18n="how.for_staff.title">
+                    Dành cho Nhân viên</h3>
+                <p class="text-white/70 mb-6 leading-relaxed" data-i18n="how.for_staff.desc">Chấm công bằng điện thoại,
+                    xem lịch
+                    ca và gửi yêu cầu nghỉ phép dễ
+                    dàng.</p>
+                <ol class="list-decimal list-inside text-sm text-white/80 space-y-2">
+                    <li>Chấm công mọi lúc mọi nơi</li>
+                    <li>Xem lịch & đổi ca khi cần</li>
+                    <li>Gửi yêu cầu nhân sự nhanh chóng</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- APP PREVIEW (overlapping cards / carousel hint) -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-center mb-8 text-brand" data-i18n="experience.title">
+            Trải nghiệm ứng dụng</h2>
+        <div class="flex items-center justify-center gap-6">
+            <div class="relative w-40 sm:w-56">
+                <img src="./assets/images/gpsDetail.png" alt="Preview 1"
+                    data-i18n-alt="img.preview1" class="rounded-3xl shadow-lg glass-card p-2" />
+                <div class="absolute -left-6 -bottom-6 w-32 hidden sm:block">
+                    <img src="./assets/images/gpsReview.png" alt="Preview 2"
+                        data-i18n-alt="img.preview2" class="rounded-3xl shadow glass-card p-2" />
+                </div>
+            </div>
+            <div class="relative w-40 sm:w-56">
+                <img src="./assets/images/attendance.png" alt="Preview 3"
+                    data-i18n-alt="img.preview3" class="rounded-3xl shadow-lg transform rotate-2 glass-card p-2" />
+            </div>
+            <div class="relative w-40 sm:w-56 hidden sm:block">
+                <img src="./assets/images/scanQR.png" alt="Preview 4"
+                    data-i18n-alt="img.preview4" class="rounded-3xl shadow-lg transform -rotate-2 glass-card p-2" />
+            </div>
+        </div>
+        <p class="text-center text-sm text-white/70 mt-6">Giao diện thân thiện, thao tác đơn giản, tối ưu cho di động.
+        </p>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section id="customers" class="max-w-6xl mx-auto px-4 py-12">
+        <div class="glass-card p-8 rounded-3xl">
+            <h2 class="text-2xl font-bold text-center mb-8 text-brand" data-i18n="customers.title">Khách hàng nói gì về
+                Vào Ca?</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl bg-[color:var(--bg)] text-center">
+                    <img src="https://placehold.co/80x80/FFFFFF/004c39?text=A" alt="Công ty A"
+                        data-i18n-alt="img.client_a" class="w-16 h-16 rounded-full mx-auto mb-3 shadow" />
+                    <p class="italic" data-i18n="customers.testimonial1">“Vào Ca giúp chúng tôi tiết kiệm 50% thời gian
+                        quản
+                        lý nhân sự.”</p>
+                    <span class="text-xs text-gray-500 mt-3 block">- Công ty A</span>
+                </div>
+                <div class="p-6 rounded-2xl bg-[color:var(--bg)] text-center">
+                    <img src="https://placehold.co/80x80/FFFFFF/004c39?text=B" alt="Công ty B"
+                        data-i18n-alt="img.client_b" class="w-16 h-16 rounded-full mx-auto mb-3 shadow" />
+                    <p class="italic" data-i18n="customers.testimonial2">“Ứng dụng rất dễ sử dụng, hỗ trợ tốt cho nhân
+                        viên.”</p>
+                    <span class="text-xs text-gray-500 mt-3 block">- Công ty B</span>
+                </div>
+                <div class="p-6 rounded-2xl bg-[color:var(--bg)] text-center">
+                    <img src="https://placehold.co/80x80/FFFFFF/004c39?text=C" alt="Công ty C"
+                        data-i18n-alt="img.client_c" class="w-16 h-16 rounded-full mx-auto mb-3 shadow" />
+                    <p class="italic" data-i18n="customers.testimonial3">“Báo cáo tức thời giúp quản lý hiệu quả hơn.”
+                    </p>
+                    <span class="text-xs text-gray-500 mt-3 block">- Công ty C</span>
+                </div>
+            </div>
+
+            <div class="mt-8 border-t pt-8 flex flex-wrap gap-6 justify-center items-center">
+                <!-- client logos -->
+                <img src="https://placehold.co/120x40/FFFFFF/004c39?text=Client+1" alt="logo1"
+                    data-i18n-alt="img.client_logo1" class="h-8" />
+                <img src="https://placehold.co/120x40/FFFFFF/004c39?text=Client+2" alt="logo2"
+                    data-i18n-alt="img.client_logo2" class="h-8" />
+                <img src="https://placehold.co/120x40/FFFFFF/004c39?text=Client+3" alt="logo3"
+                    data-i18n-alt="img.client_logo3" class="h-8" />
+                <img src="https://placehold.co/120x40/FFFFFF/004c39?text=Client+4" alt="logo4"
+                    data-i18n-alt="img.client_logo4" class="h-8" />
+            </div>
+    </section>
+
+    <!-- PRICING & CONTACT -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white" data-i18n="contact.title">Bảng giá</h2>
+            <p class="text-lg text-white/80 max-w-2xl mx-auto">Chọn gói phù hợp với nhu cầu của doanh nghiệp bạn</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 h-full">
+            <div class="pricing-card-modern">
+                <h3 class="text-white font-bold text-lg mb-3" data-i18n="pricing.basic.title">Gói Chấm công</h3>
+                <div class="mb-4">
+                    <span class="text-3xl font-bold text-white">1,999,000đ</span>
+                    <span class="text-white/70 text-sm">/năm</span>
+                </div>
+                <ul class="text-white/70 text-sm space-y-2 mb-6 text-left">
+                    <li data-i18n="pricing.basic.feature1">• Kết nối và tải giờ công</li>
+                    <li data-i18n="pricing.basic.feature2">• Quy trình xử lý công tự động</li>
+                    <li>• Báo cáo tổng hợp công</li>
+                </ul>
+                <div class="mt-auto flex justify-center">
+                    <button class="btn-modern btn-outline-modern px-2 py-3 rounded-[2rem]"
+                        data-i18n="pricing.basic.cta">Đăng ký ngay</button>
+                </div>
+            </div>
+
+            <div class="pricing-card-modern featured flex flex-col h-full">
+                <h3 class="text-white font-bold text-lg mb-3" data-i18n="pricing.pro.title">Trọn gói Vào Ca</h3>
+                <div class="mb-4">
+                    <span class="text-3xl font-bold text-white">4,999,000đ</span>
+                    <span class="text-white/70 text-sm">/năm</span>
+                </div>
+                <ul class="text-white/70 text-sm space-y-2 mb-6 text-left">
+                    <li>• Tất cả tính năng Vào Ca</li>
+                    <li>• Tối đa 60 nhân viên</li>
+                    <li>• Chấm công GPS</li>
+                    <li>• Báo cáo chi tiết công và lương</li>
+                </ul>
+                <div class="mt-auto flex justify-center">
+                    <button class="btn-modern btn-primary-modern px-2 py-3 rounded-3xl">Chọn gói này</button>
+                </div>
+            </div>
+
+            <div class="pricing-card-modern h-full">
+                <h3 class="text-white font-bold text-lg mb-3">Gói Tính lương</h3>
+                <div class="mb-4">
+                    <span class="text-3xl font-bold text-white">3,999,000đ</span>
+                    <span class="text-white/70 text-sm">/năm</span>
+                </div>
+                <ul class="text-white/70 text-sm space-y-2 mb-6 text-left">
+                    <li>• Tất cả tính năng gói chấm công</li>
+                    <li>• Quy trình tính lương hàng tháng</li>
+                    <li>• Báo cáo chấm công và tính lương</li>
+                </ul>
+
+                <div class="mt-auto flex justify-center">
+                    <button class="btn-modern btn-outline-modern px-2 py-3 rounded-[2rem]">Liên hệ</button>
+                </div>
+            </div>
+
+            <div class="pricing-card-modern h-full">
+                <div class="old font-bold text-lg mb-3">Gói Chấm công GPS</div>
+                <div class="mb-4">
+                    <span class="text-3xl font-bold text-white">2,999,000đ</span>
+                    <span class="text-white/70 text-sm">/năm</span>
+                </div>
+                <ul class="text-white/70 text-sm space-y-2 mb-6 text-left">
+                    <li>• Chấm công GPS</li>
+                    <li>• Quy trình xử lý công tự động</li>
+                    <li>• Báo cáo công hàng tháng</li>
+                    <li>• Thiết lập chấm công tùy ý</li>
+                </ul>
+                <div class="mt-auto flex justify-center">
+                    <button class="btn-modern btn-outline-modern px-2 py-3 rounded-[2rem]"
+                        data-i18n="pricing.custom.cta">Nhận tư vấn</button>
+                </div>
+            </div>
+        </div>
+
+                <!-- Thay thế phần form liên hệ hiện tại -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Form Section -->
+            <div class="glass-card p-8 rounded-2xl">
+                <h4 class="text-white font-bold text-lg text-center mb-6" data-i18n="contact.form.title">Liên hệ tư vấn miễn phí</h4>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input name="name" type="text" placeholder="Họ và tên" data-i18n-placeholder="contact.form.name"
+                        required
+                        class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none" />
+                    <input name="email" type="email" placeholder="Email" data-i18n-placeholder="contact.form.email" required
+                        class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none" />
+                    <input name="phone" type="tel" placeholder="Số điện thoại" data-i18n-placeholder="contact.form.phone"
+                        required
+                        class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none" />
+                    <input name="company" type="text" placeholder="Tên công ty"
+                        class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none" />
+                    <div class="md:col-span-2">
+                        <textarea name="message" rows="4" placeholder="Nội dung liên hệ"
+                            data-i18n-placeholder="contact.form.message"
+                            class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none resize-none"></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <button type="submit" class="btn-modern btn-primary-modern rounded-[2rem] px-10 py-4"
+                            data-i18n="contact.form.submit">Gửi liên hệ</button>
+                    </div>
+                </form>
+            </div>
+        
+            <!-- Illustration Section -->
+            <div class="glass-card p-8 rounded-2xl flex flex-col items-center justify-center text-center">
+                <div class="relative mb-6">
+                    <!-- Hình minh họa chính -->
+                    <div class="p-4 rounded-2xl">
+                        <img src="./assets/images/VC_3D.png" 
+                             alt="Liên hệ tư vấn" 
+                             class="w-full h-auto rounded-xl"
+                             onerror="this.src='https://placehold.co/300x200/FFFFFF/004c39?text=Contact+Illustration'">
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-bold text-white mb-3">Hỗ trợ 24/7</h3>
+                <p class="text-white/70 leading-relaxed">
+                    Đội ngũ chuyên nghiệp của chúng tôi luôn sẵn sàng hỗ trợ bạn 
+                    với mọi câu hỏi về giải pháp nhân sự Vào Ca.
+                </p>
+                
+                <!-- Thông tin liên hệ bổ sung -->
+                <div class="mt-6 space-y-3 text-sm text-white/80">
+                    <div class="flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        <span>Hotline: 0945949065</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Email: vu.le@phanmemtinhluong.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="glass-footer border-t mt-12">
+        <div
+            class="max-w-6xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between text-sm text-gray-300">
+            <div class="flex items-center gap-3">
+                <img src="./assets/images/VaoCa_simpleLG.svg" alt="logo" data-i18n-alt="img.logo"
+                    class="w-10 h-10 rounded-full" />
+                <span>© <span id="year"></span> <span data-i18n="footer.brand">Vào Ca</span>. <span
+                        data-i18n="footer.copyright">Đã đăng ký bản quyền.</span></span>
+            </div>
+            <div class="mt-3 sm:mt-0">
+                <a href="#" class="mr-4 hover:underline text-brand hover:text-secondary" data-i18n="footer.policy">Chính
+                    sách</a>
+                <a href="#" class="hover:underline text-brand hover:text-secondary" data-i18n="footer.contact">Liên
+                    hệ</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/glassmorphism.js"></script>
+</body>
+
+</html>
