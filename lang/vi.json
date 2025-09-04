@@ -90,7 +90,7 @@
   "contact.form.email": "Email",
   "contact.form.phone": "Số điện thoại",
   "contact.form.message": "Nội dung liên hệ",
-  "contact.form.nameCompany":"Tên công ty",
+  "contact.form.nameCompany": "Tên công ty",
   "footer.brand": "Vào Ca",
   "footer.copyright": "Đã đăng ký bản quyền.",
   "footer.policy": "Chính sách",
@@ -139,8 +139,12 @@
   "img.client_logo3": "Logo khách hàng 3",
   "img.client_logo4": "Logo khách hàng 4",
   "img.logo": "Logo Vào Ca",
-  "contact" : "Liên hệ",
-  "submit.contact":"Gửi liên hệ",
-  "download":"Tải ứng dụng",
-  "contact.follow":"Theo dõi chúng tôi"
+  "contact": "Liên hệ",
+  "submit.contact": "Gửi liên hệ",
+  "download": "Tải ứng dụng",
+  "contact.follow": "Theo dõi chúng tôi",
+  "submit_button": "Gửi liên hệ",
+  "sending_button": "Đang gửi...",
+  "success_alert": "Gửi liên hệ thành công!",
+  "fail_alert": "Gửi liên hệ thất bại, vui lòng thử lại."
 }

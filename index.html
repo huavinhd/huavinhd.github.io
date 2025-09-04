@@ -29,7 +29,7 @@
     <meta name="application-name" content="Vào Ca">
 
     <!-- PWA Support -->
-    <link rel="manifest" href="./manifest.json">
+    <!-- <link rel="manifest" href="./manifest.json"> -->
     <link rel="apple-touch-icon" href="./assets/images/VaoCa_simpleLG.svg">
 </head>
 
@@ -127,8 +127,8 @@
                     quản trị nhân sự nhanh chóng, hiệu quả và tối ưu trên một ứng dụng điện thoại duy nhất.</p>
                 <div
                     class="mt-8 flex flex-row flex-wrap gap-4 justify-center md:justify-start animate-slide-left animate-delay-400">
-                    <a href="#" class="cta-btn-special interactive-glow rounded-[3rem]" aria-label="Tải ngay — Vào Ca"
-                        data-i18n="hero.download">Tải ngay</a>
+                    <a href="#download-section" class="cta-btn-special interactive-glow rounded-[3rem]"
+                        aria-label="Tải ngay — Vào Ca" data-i18n="hero.download">Tải ngay</a>
                     <a href="#contact"
                         class="glass-btn-outline px-[2rem] py-[1rem] rounded-[3rem] font-semibold text-lg interactive-glow"
                         aria-label="Nhận tư vấn — Vào Ca" data-i18n="hero.consult">Nhận tư vấn</a>
@@ -510,7 +510,7 @@
                 </div>
                 <ul class="text-white/70 text-sm space-y-2 mb-6 text-left">
                     <li data-i18n="pricing.pro.feature1">• Tất cả tính năng Vào Ca</li>
-                    <li data-i18n="pricing.pro.feature2">• Tối đa 60 nhân viên</li>
+                    <li data-i18n="pricing.pro.feature2">• Tối đa 50 nhân viên</li>
                     <li data-i18n="pricing.pro.feature3">• Chấm công GPS</li>
                     <li data-i18n="pricing.pro.feature4">• Báo cáo chi tiết công và lương</li>
                 </ul>
@@ -597,27 +597,31 @@
                     class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                     <!-- Access Key -->
-                    <input type="hidden" name="access_key" value="a7e790a2-4c0e-4316-8cdb-260b352e7fa5">                 
+                    <input type="hidden" name="access_key" value="a7e790a2-4c0e-4316-8cdb-260b352e7fa5">
 
                     <input type="hidden" name="subject" value="Hỗ trợ tư vấn app Vào Ca">
 
                     <!-- Anti-bot -->
                     <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
-                    <input name="name" type="text" placeholder="Họ và tên" data-i18n-placeholder="contact.form.name" required
+                    <input name="name" type="text" placeholder="Họ và tên" data-i18n-placeholder="contact.form.name"
+                        required
                         class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none" />
 
                     <input name="email" type="email" placeholder="Email" required
                         class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none" />
 
-                    <input name="phone" type="tel" placeholder="Số điện thoại" data-i18n-placeholder="contact.form.phone" required
+                    <input name="phone" type="tel" placeholder="Số điện thoại"
+                        data-i18n-placeholder="contact.form.phone" required
                         class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none" />
 
-                    <input name="company" type="text" placeholder="Tên công ty" data-i18n-placeholder="contact.form.nameCompany"
+                    <input name="company" type="text" placeholder="Tên công ty"
+                        data-i18n-placeholder="contact.form.nameCompany"
                         class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none" />
 
                     <div class="md:col-span-2">
-                        <textarea name="message" rows="4" placeholder="Nội dung liên hệ" data-i18n-placeholder="contact.form.message"
+                        <textarea name="message" rows="4" placeholder="Nội dung liên hệ"
+                            data-i18n-placeholder="contact.form.message"
                             class="glass-input w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/60 focus:border-primary-color focus:outline-none resize-none"></textarea>
                     </div>
 
@@ -627,7 +631,7 @@
                     </div>
                 </form>
 
-                
+
 
             </div>
 
@@ -673,7 +677,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="glass-footer border-t mt-12">
+    <footer class="glass-footer border-t mt-12" id="download-section">
         <div class="max-w-6xl mx-auto px-4 py-8">
 
             <!-- Contact Information & Menu Links -->
@@ -861,8 +865,1176 @@
         </div>
     </footer>
 
-    <script src="assets/js/site.js"></script>
-    <script src="assets/js/glassmorphism.js"></script>
+    <!-- <script src="assets/js/site.js"> -->
+    <script>
+        // Enhanced page functionality with smooth animations
+        (function () {
+            const yearEl = document.getElementById("year");
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+            // Detect OS and show appropriate app store buttons
+            function detectOS() {
+                const userAgent = navigator.userAgent.toLowerCase();
+                if (/android/i.test(userAgent)) {
+                    return 'android';
+                } else if (/iphone|ipad|ipod/i.test(userAgent)) {
+                    return 'ios';
+                }
+                return 'desktop';
+            }
+
+            document.getElementById('compose_email')?.addEventListener('click', function (e) {
+                e.preventDefault();
+                const email = "sales@phanmemtinhluong.com";
+                const subject = "Yêu cầu tư vấn HRM";
+                const body = "Chào anh/chị,\nTôi muốn được tư vấn thêm về phần mềm chấm công và tính lương Vào Ca.\nXin cảm ơn!";
+
+                // Kiểm tra thiết bị
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+                let mailtoUrl;
+                if (isMobile) {
+                    // Đối với thiết bị di động, sử dụng mailto: scheme
+                    mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                    // Nếu là Android, thử mở trong ứng dụng Gmail
+                    if (/Android/i.test(navigator.userAgent)) {
+                        mailtoUrl = `googlegmail://co?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    }
+                    // Nếu là iOS, thử mở trong ứng dụng Mail
+                    else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                        mailtoUrl = `message://compose?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    }
+                } else {
+                    // Đối với desktop, sử dụng Gmail web
+                    mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                }
+
+                // Mở link email
+                window.location.href = mailtoUrl;
+            });
+
+            // document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            //   e.preventDefault();
+            //   var formFields = ['name', 'email', 'phone', 'company', 'content'];
+
+            //   const formData = new FormData(this);
+            //   const dataObj = {};
+
+            //   // map message → content
+            //   formFields.forEach(field => {
+            //     if (field === 'content') {
+            //       dataObj['content'] = formData.get('message') || "";
+            //     } else {
+            //       dataObj[field] = formData.get(field) || "";
+            //     }
+            //   });
+
+            //   let jsonString = JSON.stringify(dataObj);
+
+            //   const tmpData = {
+            //     "user": "adminApi",
+            //     "password": "1ECCB611504F591740CFFFF9B46044CBF506A73B965775E6B2EB0088A15FEDDAA485D8790EFE599231C21A10FEF5D67F15F0725B2F56347DB328B3F59C907621",
+            //     "name": "sp_ContactCustommer_Update",
+            //     "param": ['IDInput2', jsonString]
+            //   };
+
+            //   try {
+            //     const response = await fetch('https://paradisehrm.com/vietinsoft/api/hpa/Paradise', {
+            //       method: "POST",
+            //       headers: { "Content-Type": "application/json" },
+            //       body: JSON.stringify(tmpData)
+            //     });
+
+            //     if (!response.ok) throw new Error("HTTP " + response.status);
+
+            //     const result = await response.json();
+
+            //     alert("Gửi liên hệ thành công!");
+            //   } catch (err) {
+
+            //   }
+
+            //   const form = e.target;
+            //   const data = new FormData(form);
+
+            //   const res = await fetch(form.action, {
+            //     method: form.method,
+            //     body: data
+            //   });
+
+            //   const json = await res.json();
+
+            //   if (json.success) {
+            //     form.reset();
+            //   }
+            // });
+
+            const i18n = {
+                vi: {
+                    submit_button: "Gửi liên hệ",
+                    sending_button: "Đang gửi...",
+                    success_alert: "Gửi liên hệ thành công!",
+                    fail_alert: "Gửi liên hệ thất bại, vui lòng thử lại."
+                },
+                en: {
+                    submit_button: "Submit",
+                    sending_button: "Sending...",
+                    success_alert: "Contact sent successfully!",
+                    fail_alert: "Failed to send contact, please try again."
+                }
+            };
+
+            // Giả sử ngôn ngữ hiện tại
+            window.language = "vi";
+
+
+            document.getElementById('contactForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const sel = document.getElementById("langSelect").value;
+                window.language = sel;
+
+                const form = e.target;
+                const submitBtn = form.querySelector('[type="submit"]');
+
+                // Disable nút submit để tránh gửi nhiều lần
+                submitBtn.disabled = true;
+                submitBtn.textContent = i18n[language].sending_button;
+
+                // ====== Tạo object để gửi API nội bộ ======
+                var formFields = ['name', 'email', 'phone', 'company', 'region', 'company_size', 'content'];
+                const formData = new FormData(form);
+                const dataObj = {};
+
+                formFields.forEach(field => {
+                    if (field === 'content') {
+                        dataObj['content'] = formData.get('message') || "";
+                    } else if (field === 'region') {
+                        dataObj['region'] = formData.get('region') || "VaoCa";
+                    } else if (field === 'company_size') {
+                        dataObj['company_size'] = formData.get('company_size') || "50";
+                    } else {
+                        dataObj[field] = formData.get(field) || "";
+                    }
+                });
+
+                let jsonString = JSON.stringify(dataObj, null, 2);
+                const tmpData = {
+                    user: "adminApi",
+                    password: "1ECCB611504F591740CFFFF9B46044CBF506A73B965775E6B2EB0088A15FEDDAA485D8790EFE599231C21A10FEF5D67F15F0725B2F56347DB328B3F59C907621",
+                    name: "sp_ContactCustommer_Update",
+                    param: ['IDInput2', jsonString]
+                };
+
+                try {
+                    const apiRes = await fetch("https://vaocaapi.zc4prvnm9x.workers.dev/", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(tmpData)
+                    });
+
+                    const apiResult = await apiRes.json();
+
+                    if (apiResult?.result !== false) {
+                          alert(i18n[language].success_alert);
+                        form.reset();
+                    } else {
+                        throw new Error("API trả về lỗi");
+                    }
+
+                } catch (err) {
+                    console.error(err);
+                    alert(i18n[language].fail_alert);
+                } finally {
+                    // Enable lại nút submit
+                    submitBtn.disabled = false;
+                     submitBtn.textContent = i18n[language].submit_button;
+                }
+            });
+
+            // Show/hide app store buttons based on OS
+            function updateAppStoreButtons() {
+                const os = detectOS();
+                const googlePlayBtn = document.getElementById('google-play-btn');
+                const appStoreBtn = document.getElementById('app-store-btn');
+
+                if (googlePlayBtn && appStoreBtn) {
+                    if (os === 'android') {
+                        googlePlayBtn.style.cssText = 'display: flex !important';
+                        appStoreBtn.style.cssText = 'display: none !important';
+                    } else if (os === 'ios') {
+                        googlePlayBtn.style.cssText = 'display: none !important';
+                        appStoreBtn.style.cssText = 'display: flex !important';
+                    } else {
+                        googlePlayBtn.style.cssText = 'display: flex !important';
+                        appStoreBtn.style.cssText = 'display: flex !important';
+                    }
+                }
+            }
+
+            // Call the function when the page loads
+            updateAppStoreButtons();
+
+            // Enhanced header scroll animation
+            const header = document.getElementById("siteHeader");
+            const scrollIndicator = document.getElementById("scrollIndicator");
+            let lastScrollY = window.scrollY;
+            let ticking = false;
+
+            function updateHeader() {
+                const scrollY = window.scrollY;
+                const documentHeight =
+                    document.documentElement.scrollHeight - window.innerHeight;
+                const scrollProgress = scrollY / documentHeight;
+
+                // Update scroll indicator
+                if (scrollIndicator) {
+                    scrollIndicator.style.transform = `scaleX(${scrollProgress})`;
+                }
+
+                if (scrollY > 100) {
+                    header.classList.add("scrolled");
+                } else {
+                    header.classList.remove("scrolled");
+                }
+
+                // Keep header always visible (removed hide/show functionality)
+                // Header stays fixed at top during scroll
+
+                lastScrollY = scrollY;
+                ticking = false;
+            }
+
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateHeader);
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener("scroll", requestTick);
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute("href");
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+
+                        // Remove active class from all nav links
+                        document.querySelectorAll(".nav-link").forEach((link) => {
+                            link.classList.remove("active");
+                        });
+
+                        // Add active class to clicked link
+                        this.classList.add("active");
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: "smooth",
+                        });
+                    }
+                });
+            });
+
+            // Add active state on scroll
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            function updateActiveNav() {
+                const scrollY = window.scrollY;
+
+                sections.forEach((current) => {
+                    const sectionHeight = current.offsetHeight;
+                    const sectionTop = current.offsetTop - header.offsetHeight - 50;
+                    const sectionId = current.getAttribute("id");
+
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        navLinks.forEach((link) => {
+                            link.classList.remove("active");
+                            if (link.getAttribute("href") === `#${sectionId}`) {
+                                link.classList.add("active");
+                            }
+                        });
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", updateActiveNav);
+
+            // Add intersection observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px",
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document
+                .querySelectorAll(".feature-card-modern, .pricing-card-modern, .glass-card")
+                .forEach((el) => {
+                    el.style.opacity = "0";
+                    el.style.transform = "translateY(30px)";
+                    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                    observer.observe(el);
+                });
+
+            // Enhanced mobile menu toggle
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener("click", function () {
+                    const isExpanded = this.getAttribute("aria-expanded") === "true";
+                    this.setAttribute("aria-expanded", !isExpanded);
+
+                    // Toggle active class instead of inline styles
+                    if (!isExpanded) {
+                        mobileMenu.classList.add("active");
+                    } else {
+                        mobileMenu.classList.remove("active");
+                    }
+                });
+
+                // Close mobile menu when clicking on nav links
+                const mobileNavLinks = mobileMenu.querySelectorAll(".nav-link");
+                mobileNavLinks.forEach((link) => {
+                    link.addEventListener("click", () => {
+                        mobileMenu.classList.remove("active");
+                        mobileMenuBtn.setAttribute("aria-expanded", "false");
+                    });
+                });
+            }
+        })();
+
+        // progressive enhancement: simple form submit handler (demo)
+        // document.querySelectorAll("form").forEach((f) => {
+        //     f.addEventListener("submit", (e) => {
+        //         e.preventDefault();
+        //         const btn = f.querySelector('button[type="submit"]');
+        //         if (!btn) return;
+        //         const old = btn.innerHTML;
+        //         btn.innerHTML = "Đang gửi...";
+        //         setTimeout(() => {
+        //             btn.innerHTML = "Gửi liên hệ";
+        //             alert("Gửi thành công");
+        //             f.reset();
+        //         }, 900);
+        //     });
+        // });
+
+        /* Internationalization (load translations from /lang/*.json only) */
+        (function () {
+            // runtime translations object populated from external JSON files in /lang
+            const translations = {};
+
+            // show a small dismissible warning when the page is opened via file://
+            function showFileProtocolWarning() {
+                if (document.getElementById("fileProtocolWarning")) return;
+                const wrap = document.createElement("div");
+                wrap.id = "fileProtocolWarning";
+                wrap.style.zIndex = 9999;
+                wrap.className =
+                    "fixed left-4 right-4 top-4 p-3 rounded-lg bg-yellow-50 border border-yellow-300 text-sm text-yellow-900 shadow";
+                wrap.innerHTML = `
+      <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;">
+        <div>
+          <strong>Cross-origin blocked:</strong>
+          This page was opened using the file:// protocol, so browser fetch() requests to local files (./lang/*.json) are blocked.\n
+          Serve the site over HTTP to enable translations and avoid this error.\n
+          Try from the project folder in a terminal:\n
+          <code style=\"display:block;margin-top:6px;padding:6px;background:#fff;border-radius:4px;color:#111;\">python3 -m http.server 8000</code>
+        </div>
+        <div style="margin-left:12px;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+          <button id="dismissFileWarning" style="background:#111;color:#fff;border:none;padding:6px 8px;border-radius:6px;">Đóng</button>
+        </div>
+      </div>
+    `;
+                document.body.appendChild(wrap);
+                document
+                    .getElementById("dismissFileWarning")
+                    .addEventListener("click", () => {
+                        wrap.remove();
+                    });
+            }
+
+            async function loadExternal() {
+                // If opened from file://, fetch() to local files will be blocked by browsers.
+                if (window.location && window.location.protocol === "file:") {
+                    // warn the user and skip attempting fetch to avoid noisy errors
+                    try {
+                        showFileProtocolWarning();
+                    } catch (e) { }
+                    return;
+                }
+                for (const l of ["vi", "en"]) {
+                    try {
+                        const res = await fetch(`./lang/${l}.json`, { cache: "no-cache" });
+                        if (res.ok) {
+                            const json = await res.json();
+                            translations[l] = json;
+                        }
+                    } catch (e) {
+                        // ignore and keep inline
+                    }
+                }
+            }
+
+            const getSaved = () => {
+                const s = localStorage.getItem("site_lang");
+                if (s) return s;
+                try {
+                    return navigator.language && navigator.language.startsWith("en")
+                        ? "en"
+                        : "vi";
+                } catch (e) {
+                    return "vi";
+                }
+            };
+            let lang = getSaved();
+
+            // Set selector value
+            const sel = document.getElementById("langSelect");
+            if (sel) {
+                sel.value = lang;
+                sel.addEventListener("change", (e) => {
+                    setLang(e.target.value);
+                });
+            }
+
+            function applyTranslations() {
+                document.querySelectorAll("[data-i18n]").forEach((el) => {
+                    const key = el.getAttribute("data-i18n");
+                    const txt = (translations[lang] && translations[lang][key]) || "";
+                    if (txt) {
+                        el.innerText = txt;
+                    }
+                });
+
+                // update document title / meta description if keys exist
+                if (translations[lang] && translations[lang]["meta.title"])
+                    document.title = translations[lang]["meta.title"];
+                if (translations[lang] && translations[lang]["meta.description"]) {
+                    let m = document.querySelector('meta[name="description"]');
+                    if (m) m.setAttribute("content", translations[lang]["meta.description"]);
+                }
+
+                // placeholders -> use explicit data-i18n-placeholder attribute for mapping
+                document.querySelectorAll("[data-i18n-placeholder]").forEach((inp) => {
+                    const key = inp.getAttribute("data-i18n-placeholder");
+                    const val = (translations[lang] && translations[lang][key]) || "";
+                    if (val) inp.setAttribute("placeholder", val);
+                });
+
+                // update buttons/anchors that use data-i18n
+                document
+                    .querySelectorAll("button[data-i18n], a[data-i18n]")
+                    .forEach((el) => {
+                        const key = el.getAttribute("data-i18n");
+                        const txt = (translations[lang] && translations[lang][key]) || "";
+                        if (txt) el.innerText = txt;
+                    });
+
+                // update image alt attributes
+                document.querySelectorAll("[data-i18n-alt]").forEach((img) => {
+                    const key = img.getAttribute("data-i18n-alt");
+                    const alt = (translations[lang] && translations[lang][key]) || "";
+                    if (alt) img.setAttribute("alt", alt);
+                });
+                // ensure brand gradient persists after any text replacement
+                try {
+                    preserveGradientTitle();
+                } catch (e) { }
+            }
+
+            // ensure the brand wordmark keeps gradient styling even after translations replace innerText
+            function preserveGradientTitle() {
+                const h = document.querySelector('[data-i18n="hero.title"]');
+                if (!h) return;
+                // if translations replaced the content, try to wrap the first occurrence of "Vào Ca"
+                const text = h.innerText || "";
+                if (/Vào\s*Ca/.test(text) && !h.querySelector(".gradient-text")) {
+                    h.innerHTML = h.innerHTML.replace(
+                        /(Vào\s*Ca)/,
+                        '<span class="gradient-text">$1</span>'
+                    );
+                }
+            }
+
+            function setLang(l) {
+                lang = l;
+                localStorage.setItem("site_lang", l);
+                applyTranslations();
+                if (sel) sel.value = l;
+            }
+
+            // initial apply: try loading external files first
+            loadExternal()
+                .then(() => applyTranslations())
+                .catch(() => applyTranslations());
+        })();
+
+        // Mobile menu + sticky header
+        (function () {
+            const mobileBtn = document.getElementById("mobileMenuBtn");
+            const header = document.getElementById("siteHeader");
+            let mobileMenuEl;
+
+            // create simple off-canvas mobile menu (if not present)
+            function ensureMobileMenu() {
+                mobileMenuEl = document.getElementById("mobileMenu");
+                if (mobileMenuEl) return;
+                mobileMenuEl = document.createElement("div");
+                mobileMenuEl.id = "mobileMenu";
+                // don't remove from DOM; control visibility via .menu-open
+                mobileMenuEl.className = "fixed inset-0 z-40";
+                mobileMenuEl.innerHTML = `
+                <div id="mobileOverlay" class="absolute inset-0 glass-overlay-dark transition-opacity duration-300 opacity-0"></div>
+                <div class="absolute right-0 top-0 h-full w-4/5 max-w-xs glass-mobile-menu p-6 shadow-lg overflow-auto transform translate-x-full transition-transform duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                        <a href="#" class="flex items-center gap-3">${document.querySelector('a[href="#"]')?.innerHTML || ""
+                    }</a>
+                        <button id="mobileCloseBtn" aria-label="Đóng menu" class="p-2 rounded-md glass-btn">✕</button>
+                    </div>
+                    <nav class="flex flex-col gap-4" aria-label="Mobile navigation">
+                        <a href="#features" class="py-3 px-4 glass-btn rounded-lg text-gray-800 hover:text-primary-color transition-colors">Tính năng</a>
+                        <a href="#how" class="py-3 px-4 glass-btn rounded-lg text-gray-800 hover:text-primary-color transition-colors">Cách hoạt động</a>
+                        <a href="#customers" class="py-3 px-4 glass-btn rounded-lg text-gray-800 hover:text-primary-color transition-colors">Khách hàng</a>
+                        <a href="#aboutUs" class="py-3 px-4 glass-btn rounded-lg text-gray-800 hover:text-primary-color transition-colors">Về chúng tôi</a>
+                        <a href="#contact" class="mt-4 glass-btn-primary px-6 py-3 rounded-xl text-white font-semibold">Liên hệ</a>
+                    </nav>
+                </div>
+            `;
+                document.body.appendChild(mobileMenuEl);
+                // initial closed state: ensure pointer-events are off
+                mobileMenuEl.classList.remove("menu-open");
+            }
+            let isMenuOpen = false;
+
+            function openMobile() {
+                if (isMenuOpen) return;
+                ensureMobileMenu();
+                isMenuOpen = true;
+
+                // Show menu with animation
+                requestAnimationFrame(() => {
+                    // document.body.style.overflow = "hidden";
+                    mobileMenuEl.classList.add("menu-open");
+                    mobileBtn?.setAttribute("aria-expanded", "true");
+                });
+            }
+
+            function closeMobile() {
+                if (!mobileMenuEl || !isMenuOpen) return;
+
+                isMenuOpen = false;
+                mobileMenuEl.classList.remove("menu-open");
+                mobileBtn?.setAttribute("aria-expanded", "false");
+                document.body.style.overflow = "";
+
+                // Delay removing class to allow animation
+                setTimeout(() => {
+                    if (!isMenuOpen) {
+                        mobileMenuEl.classList.remove("menu-open");
+                    }
+                }, 300);
+            }
+
+            document.addEventListener("click", (e) => {
+                // Handle menu button click
+                if (e.target && (e.target.id === "mobileMenuBtn" || e.target.closest("#mobileMenuBtn"))) {
+                    if (isMenuOpen) {
+                        closeMobile();
+                    } else {
+                        openMobile();
+                    }
+                }
+
+                // Handle close button and overlay clicks
+                if (e.target && (e.target.id === "mobileCloseBtn" || e.target.id === "mobileOverlay")) {
+                    closeMobile();
+                }
+
+                // Close menu when clicking outside
+                if (isMenuOpen && !e.target.closest(".mobile-nav-menu") && !e.target.closest("#mobileMenuBtn")) {
+                    closeMobile();
+                }
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeMobile();
+            });
+
+            // Sticky header for desktop (>= md)
+            const mq = window.matchMedia("(min-width: 768px)");
+            let lastSticky = false;
+            function updateSticky() {
+                if (!header) return;
+                const should = mq.matches && window.scrollY > 18;
+                if (should === lastSticky) return;
+                lastSticky = should;
+                if (should) {
+                    const h = header.offsetHeight || 64;
+                    // remove 'relative' so Tailwind's .relative doesn't override .fixed
+                    header.classList.remove("relative");
+                    header.classList.add(
+                        "fixed",
+                        "top-0",
+                        "left-0",
+                        "right-0",
+                        "z-50",
+                        "backdrop-blur",
+                        "shadow-md"
+                    );
+                    // read CSS var --header-bg; fallback to white-ish if not defined
+                    const rootBg = getComputedStyle(document.documentElement)
+                        .getPropertyValue("--header-bg")
+                        .trim();
+                    document.body.style.paddingTop = h + "px";
+                } else {
+                    // restore 'relative' for the original layout when not sticky
+                    header.classList.remove(
+                        "fixed",
+                        "top-0",
+                        "left-0",
+                        "right-0",
+                        "z-50",
+                        "backdrop-blur",
+                        "shadow-md"
+                    );
+                    header.classList.add("relative");
+                    header.style.background = "";
+                    header.style.backdropFilter = "";
+                    document.body.style.paddingTop = "";
+                }
+            }
+            window.addEventListener("scroll", updateSticky, { passive: true });
+            window.addEventListener("resize", updateSticky);
+            updateSticky();
+        })();
+
+    </script>
+    <!-- <script src="assets/js/glassmorphism.js"> -->
+    <script>
+
+        // Enhanced Glassmorphism Interactions for VaoCa
+        (function () {
+            "use strict";
+
+            // Debounce function for performance
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Throttle function for scroll events
+            function throttle(func, limit) {
+                let inThrottle;
+                return function () {
+                    const args = arguments;
+                    const context = this;
+                    if (!inThrottle) {
+                        func.apply(context, args);
+                        inThrottle = true;
+                        setTimeout(() => (inThrottle = false), limit);
+                    }
+                };
+            }
+
+            // Khai báo biến toàn cục
+            let lastScrollY = 0;
+            let ticking = false;
+
+            // Enhanced Navigation Glass Effects with Fixed Header
+            function initGlassNavigation() {
+                const header = document.getElementById("siteHeader");
+                if (!header) return;
+
+                // Enhanced scroll behavior with smooth transitions
+                const handleScroll = throttle(() => {
+                    const scrolled = window.scrollY > 30;
+                    const scrollPercent = Math.min(window.scrollY / 200, 1);
+
+                    if (scrolled) {
+                        header.classList.add("scrolled");
+                        // Dynamic opacity and blur based on scroll
+                        header.style.setProperty(
+                            "--scroll-opacity",
+                            Math.min(0.95, 0.8 + scrollPercent * 0.15)
+                        );
+                        header.style.setProperty(
+                            "--scroll-blur",
+                            `${25 + scrollPercent * 15}px`
+                        );
+                    } else {
+                        header.classList.remove("scrolled");
+                        header.style.removeProperty("--scroll-opacity");
+                        header.style.removeProperty("--scroll-blur");
+                    }
+
+                    // Add smooth hide/show on scroll direction
+                    if (window.scrollY > 100) {
+                        if (window.scrollY > lastScrollY && window.scrollY > 200) {
+                            header.style.transform = "translateY(-100%)";
+                        } else {
+                            header.style.transform = "translateY(0)";
+                        }
+                    }
+                    lastScrollY = window.scrollY;
+                }, 16);
+
+                // Initialize scroll position tracking
+                handleScroll.lastScrollY = 0;
+
+                window.addEventListener("scroll", handleScroll);
+
+                // Initialize on load
+                handleScroll();
+
+                // Enhanced mobile menu toggle
+                const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+                const mobileMenu = document.querySelector(".mobile-nav-menu");
+
+                if (mobileMenuBtn && mobileMenu) {
+                    mobileMenuBtn.addEventListener("click", () => {
+                        const isActive = mobileMenu.classList.toggle("active");
+                        mobileMenuBtn.setAttribute("aria-expanded", isActive);
+
+                        // Enhanced animation
+                        if (isActive) {
+                            mobileMenu.style.display = "block";
+                            setTimeout(() => mobileMenu.classList.add("active"), 10);
+                        } else {
+                            mobileMenu.classList.remove("active");
+                            setTimeout(() => {
+                                if (!mobileMenu.classList.contains("active")) {
+                                    mobileMenu.style.display = "none";
+                                }
+                            }, 400);
+                        }
+                    });
+
+                    // Close menu when clicking outside
+                    document.addEventListener("click", (e) => {
+                        if (
+                            !header.contains(e.target) &&
+                            mobileMenu.classList.contains("active")
+                        ) {
+                            mobileMenu.classList.remove("active");
+                            mobileMenuBtn.setAttribute("aria-expanded", false);
+                            setTimeout(() => {
+                                if (!mobileMenu.classList.contains("active")) {
+                                    mobileMenu.style.display = "none";
+                                }
+                            }, 400);
+                        }
+                    });
+                }
+            }
+
+            // Smooth Scrolling with Easing
+            function initSmoothScrolling() {
+                document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                    anchor.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute("href"));
+                        if (target) {
+                            const headerHeight = 80; // Account for fixed header
+                            const targetPosition =
+                                target.getBoundingClientRect().top +
+                                window.pageYOffset -
+                                headerHeight;
+
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: "smooth",
+                            });
+                        }
+                    });
+                });
+            }
+
+            // Intersection Observer for Scroll Animations
+            function initScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: "0px 0px -50px 0px",
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = "1";
+                            entry.target.style.transform = "translateY(0)";
+                            entry.target.classList.add("animate-in");
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe glass cards and feature elements
+                document
+                    .querySelectorAll(".glass-card, .glass-feature-card")
+                    .forEach((el) => {
+                        el.style.opacity = "0";
+                        el.style.transform = "translateY(30px)";
+                        el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                        observer.observe(el);
+                    });
+            }
+
+            // Enhanced Glass Card Hover Effects
+            function initGlassCardEffects() {
+                document.querySelectorAll(".glass-feature-card").forEach((card) => {
+                    const handleMouseMove = (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+
+                        const rotateX = (y - centerY) / 10;
+                        const rotateY = (centerX - x) / 10;
+
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                    };
+
+                    const handleMouseLeave = () => {
+                        card.style.transform =
+                            "perspective(1000px) rotateX(0) rotateY(0) translateZ(0)";
+                    };
+
+                    card.addEventListener("mousemove", handleMouseMove);
+                    card.addEventListener("mouseleave", handleMouseLeave);
+
+                    // Add transition
+                    card.style.transition = "transform 0.3s ease";
+                });
+            }
+
+            // Glass Button Ripple Effect
+            function initGlassButtonEffects() {
+                document
+                    .querySelectorAll(".glass-btn, .glass-btn-primary")
+                    .forEach((button) => {
+                        button.addEventListener("click", function (e) {
+                            const rect = this.getBoundingClientRect();
+                            const ripple = document.createElement("span");
+                            const size = Math.max(rect.width, rect.height);
+                            const x = e.clientX - rect.left - size / 2;
+                            const y = e.clientY - rect.top - size / 2;
+
+                            ripple.style.width = ripple.style.height = size + "px";
+                            ripple.style.left = x + "px";
+                            ripple.style.top = y + "px";
+                            ripple.classList.add("ripple");
+
+                            this.appendChild(ripple);
+
+                            setTimeout(() => {
+                                ripple.remove();
+                            }, 600);
+                        });
+                    });
+            }
+
+            // Mobile Menu Enhancement
+            function initMobileMenu() {
+                const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+                const mobileMenu = document.getElementById("mobileMenu");
+
+                if (!mobileMenuBtn || !mobileMenu) return;
+
+                mobileMenuBtn.addEventListener("click", () => {
+                    const isOpen = mobileMenu.classList.contains("menu-open");
+
+                    if (isOpen) {
+                        mobileMenu.classList.remove("menu-open");
+                        mobileMenuBtn.setAttribute("aria-expanded", "false");
+                        document.body.style.overflow = "";
+                    } else {
+                        mobileMenu.classList.add("menu-open");
+                        mobileMenuBtn.setAttribute("aria-expanded", "true");
+                        // document.body.style.overflow = "hidden";
+                    }
+                });
+
+                // Close on overlay click
+                const overlay = mobileMenu.querySelector(".absolute");
+                if (overlay) {
+                    overlay.addEventListener("click", () => {
+                        mobileMenu.classList.remove("menu-open");
+                        mobileMenuBtn.setAttribute("aria-expanded", "false");
+                        document.body.style.overflow = "";
+                    });
+                }
+            }
+
+            // Lazy Loading for Images
+            function initLazyLoading() {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove("lazy");
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll("img[data-src]").forEach((img) => {
+                    imageObserver.observe(img);
+                });
+            }
+
+            // Form Validation and Enhancement
+            function initFormEnhancements() {
+                document.querySelectorAll(".glass-input").forEach((input) => {
+                    // Focus and blur effects
+                    input.addEventListener("focus", function () {
+                        this.parentElement.classList.add("focused");
+                    });
+
+                    input.addEventListener("blur", function () {
+                        if (!this.value) {
+                            this.parentElement.classList.remove("focused");
+                        }
+                    });
+
+                    // Real-time validation
+                    input.addEventListener("input", function () {
+                        if (this.validity.valid) {
+                            this.classList.remove("invalid");
+                            this.classList.add("valid");
+                        } else {
+                            this.classList.remove("valid");
+                            this.classList.add("invalid");
+                        }
+                    });
+                });
+
+                // Enhanced form submission
+                document.querySelectorAll(".glass-form").forEach((form) => {
+                    form.addEventListener("submit", function (e) {
+                        e.preventDefault();
+
+                        const submitBtn = form.querySelector('button[type="submit"]');
+                        const originalText = submitBtn.textContent;
+
+                        // Add loading state
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = "Đang gửi...";
+                        submitBtn.classList.add("loading");
+
+                        // Simulate API call
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalText;
+                            submitBtn.classList.remove("loading");
+
+                            // Show success message
+                            showNotification(
+                                "Cảm ơn! Thông tin đã được gửi thành công.",
+                                "success"
+                            );
+                            form.reset();
+                        }, 2000);
+                    });
+                });
+            }
+
+            // Notification System
+            function showNotification(message, type = "info") {
+                const notification = document.createElement("div");
+                notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg glass-card max-w-sm ${type === "success" ? "border-green-400" : "border-blue-400"
+                    }`;
+                notification.innerHTML = `
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-medium">${message}</span>
+                <button class="ml-3 text-gray-400 hover:text-gray-600" onclick="this.parentElement.parentElement.remove()">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"/>
+                    </svg>
+                </button>
+            </div>
+        `;
+
+                document.body.appendChild(notification);
+
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    notification.remove();
+                }, 5000);
+            }
+
+            // Parallax Effect for Hero Section
+            function initParallaxEffects() {
+                const handleScroll = throttle(() => {
+                    const scrolled = window.pageYOffset;
+                    const parallaxElements = document.querySelectorAll(".glass-float");
+
+                    parallaxElements.forEach((element) => {
+                        const speed = 0.5;
+                        const yPos = -(scrolled * speed);
+                        element.style.transform = `translateY(${yPos}px)`;
+                    });
+                }, 16);
+
+                window.addEventListener("scroll", handleScroll);
+            }
+
+            // Touch-friendly interactions for mobile
+            function initTouchInteractions() {
+                if ("ontouchstart" in window) {
+                    document
+                        .querySelectorAll(".glass-card, .glass-btn")
+                        .forEach((element) => {
+                            element.addEventListener("touchstart", function () {
+                                this.classList.add("touch-active");
+                            });
+
+                            element.addEventListener("touchend", function () {
+                                setTimeout(() => {
+                                    this.classList.remove("touch-active");
+                                }, 150);
+                            });
+                        });
+                }
+            }
+
+            // Performance monitoring
+            function initPerformanceMonitoring() {
+                // Monitor frame rate for animations
+                let lastTime = performance.now();
+                let frames = 0;
+
+                function checkFrameRate() {
+                    frames++;
+                    const currentTime = performance.now();
+
+                    if (currentTime - lastTime >= 1000) {
+                        const fps = Math.round((frames * 1000) / (currentTime - lastTime));
+
+                        // Reduce animations if performance is poor
+                        if (fps < 30) {
+                            document.body.classList.add("reduce-animations");
+                        }
+
+                        frames = 0;
+                        lastTime = currentTime;
+                    }
+
+                    requestAnimationFrame(checkFrameRate);
+                }
+
+                checkFrameRate();
+            }
+
+            // Initialize all features when DOM is ready
+            function init() {
+                // Core features
+                initGlassNavigation();
+                initSmoothScrolling();
+                initScrollAnimations();
+                initGlassCardEffects();
+                initGlassButtonEffects();
+                initMobileMenu();
+
+                // Enhanced features
+                initLazyLoading();
+                initFormEnhancements();
+                initParallaxEffects();
+                initTouchInteractions();
+
+                // Performance
+                initPerformanceMonitoring();
+
+                console.log("🌟 VaoCa Glassmorphism UI initialized");
+            }
+
+            // Initialize when DOM is ready
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", init);
+            } else {
+                init();
+            }
+
+            // Add CSS for ripple effect
+            const style = document.createElement("style");
+            style.textContent = `
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .touch-active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+        
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .reduce-animations * {
+            animation-duration: 0.01ms !important;
+            animation-delay: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+        
+        .glass-input.valid {
+            border-color: rgba(34, 197, 94, 0.5);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+        
+        .glass-input.invalid {
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        
+        .animate-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    `;
+            document.head.appendChild(style);
+        })();
+
+    </script>
 </body>
 
 </html>

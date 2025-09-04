@@ -139,9 +139,13 @@
   "pricing.basic.feature1": "• Connect and load work hours",
   "pricing.basic.feature2": "• Automated attendance processing",
   "pricing.basic.feature3": "• Attendance summary reports",
-  "contact" : "Contact",
-  "contact.form.nameCompany":"Company name",
+  "contact": "Contact",
+  "contact.form.nameCompany": "Company name",
   "submit.contact": "Send Contact",
-  "download":"Dowload App",
-  "contact.follow":"Follow us"
+  "download": "Dowload App",
+  "contact.follow": "Follow us",
+  "submit_button": "Submit",
+  "sending_button": "Sending...",
+  "success_alert": "Contact sent successfully!",
+  "fail_alert": "Failed to send contact, please try again."
 }

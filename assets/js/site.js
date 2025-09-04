@@ -45,14 +45,72 @@
     window.location.href = mailtoUrl;
   });
 
+  // document.getElementById('contactForm').addEventListener('submit', async function (e) {
+  //   e.preventDefault();
+  //   var formFields = ['name', 'email', 'phone', 'company', 'content'];
+
+  //   const formData = new FormData(this);
+  //   const dataObj = {};
+
+  //   // map message → content
+  //   formFields.forEach(field => {
+  //     if (field === 'content') {
+  //       dataObj['content'] = formData.get('message') || "";
+  //     } else {
+  //       dataObj[field] = formData.get(field) || "";
+  //     }
+  //   });
+
+  //   let jsonString = JSON.stringify(dataObj);
+
+  //   const tmpData = {
+  //     "user": "adminApi",
+  //     "password": "1ECCB611504F591740CFFFF9B46044CBF506A73B965775E6B2EB0088A15FEDDAA485D8790EFE599231C21A10FEF5D67F15F0725B2F56347DB328B3F59C907621",
+  //     "name": "sp_ContactCustommer_Update",
+  //     "param": ['IDInput2', jsonString]
+  //   };
+
+  //   try {
+  //     const response = await fetch('https://paradisehrm.com/vietinsoft/api/hpa/Paradise', {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(tmpData)
+  //     });
+
+  //     if (!response.ok) throw new Error("HTTP " + response.status);
+
+  //     const result = await response.json();
+
+  //     alert("Gửi liên hệ thành công!");
+  //   } catch (err) {
+
+  //   }
+
+  //   const form = e.target;
+  //   const data = new FormData(form);
+
+  //   const res = await fetch(form.action, {
+  //     method: form.method,
+  //     body: data
+  //   });
+
+  //   const json = await res.json();
+
+  //   if (json.success) {
+  //     form.reset();
+  //   }
+  // });
+
   document.getElementById('contactForm').addEventListener('submit', async function (e) {
     e.preventDefault();
-    var formFields = ['name', 'email', 'phone', 'company', 'content'];
 
-    const formData = new FormData(this);
+    const form = e.target;
+
+    // ====== Tạo object để gửi API nội bộ ======
+    var formFields = ['name', 'email', 'phone', 'company', 'content'];
+    const formData = new FormData(form);
     const dataObj = {};
 
-    // map message → content
     formFields.forEach(field => {
       if (field === 'content') {
         dataObj['content'] = formData.get('message') || "";
@@ -71,33 +129,44 @@
     };
 
     try {
-      const response = await fetch('https://paradisehrm.com/vietinsoft/api/hpa/Paradise', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tmpData)
-      });
+      // chạy song song cả 2 promise
+      const [apiRes, emailRes] = await Promise.allSettled([
+        fetch("https://paradisehrm.com/vietinsoft/api/hpa/Paradise", {
+          credentials: "include", // hoặc "same-origin"
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(tmpData)
+        }),
+        fetch(form.action, {
+          method: form.method,
+          body: formData
+        })
+      ]);
 
-      if (!response.ok) throw new Error("HTTP " + response.status);
+      let success = false;
 
-      const result = await response.json();
+      // check API nội bộ
+      if (apiRes.status === "fulfilled" && apiRes.value.ok) {
+        const apiResult = await apiRes.value.json();
+        if (apiResult?.result !== false) success = true;
+      }
 
-      alert("Gửi liên hệ thành công!");
+      // check Web3Forms
+      if (emailRes.status === "fulfilled" && emailRes.value.ok) {
+        const emailJson = await emailRes.value.json();
+        if (emailJson.success) success = true;
+      }
+
+      if (success) {
+        alert("Gửi liên hệ thành công!");
+        form.reset();
+      } else {
+        throw new Error("Cả API và Email đều lỗi");
+      }
+
     } catch (err) {
-
-    }
-
-    const form = e.target;
-    const data = new FormData(form);
-
-    const res = await fetch(form.action, {
-      method: form.method,
-      body: data
-    });
-
-    const json = await res.json();
-
-    if (json.success) {
-      form.reset();
+      console.error(err);
+      alert("Gửi liên hệ thất bại, vui lòng thử lại.");
     }
   });
 
