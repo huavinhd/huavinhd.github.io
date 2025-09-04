@@ -226,41 +226,6 @@
       });
   }
 
-  // api call Paradise
-  document.getElementById("contactForm").addEventListener("submit", async function (e) {
-    e.preventDefault(); // chặn form gửi mặc định
-
-    // lấy dữ liệu từ form
-    const formData = new FormData(this);
-    const dataObj = Object.fromEntries(formData.entries());
-
-    // chuẩn bị payload API riêng
-    const tmpData = {
-      "user": "vts",
-      "password": "72DDDA273A2D384869778E2DCBB851E106BFE1DC5B0B751C81D924772C286B02741639A14445A218A6BA86517987BA0982BC8D7B86BB4FD92CD1C1978A34105D",
-      "name": "sp_MachinetblMachineType",
-      "param": [] // có thể push dataObj nếu muốn gửi thông tin form
-    };
-
-    try {
-      const response = await fetch('https://paradisehrm.com/Beta/api/hpa/Paradise', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(tmpData)
-      });
-
-      if (!response.ok) throw new Error("HTTP " + response.status);
-
-      const result = await response.json();
-      console.log("✅ API result:", result);
-
-      alert("Gửi liên hệ thành công!");
-    } catch (err) {
-      console.error("❌ API error:", err);
-      alert("Có lỗi xảy ra khi gửi liên hệ!");
-    }
-  });
-
   // Mobile Menu Enhancement
   function initMobileMenu() {
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
