@@ -146,5 +146,14 @@
   "submit_button": "Gửi liên hệ",
   "sending_button": "Đang gửi...",
   "success_alert": "Gửi liên hệ thành công!",
-  "fail_alert": "Gửi liên hệ thất bại, vui lòng thử lại."
+  "fail_alert": "Gửi liên hệ thất bại, vui lòng thử lại.",
+   "pricing.basic.feature4": "• Giới hạn số lượng 50 nhân viên",
+    "pricing.basic.feature5": "• Hỗ trợ kỹ thuật trọn đời",
+    "pricing.basic.feature6": "• Kết nối và thao tác với máy chấm công",
+    "pricing.basic.feature7": "• Quản lí hồ sơ nhân viên",
+    "pricing.basic.feature8": "• Quản lí chấm công",
+    "pricing.basic.feature9": "• Thông báo ứng dụng và ngoài ứng dụng",
+    "pricing.basic.feature10": "• Đồng bộ dữ liệu giữa app và máy chấm công, giữa tài khoản chủ doanh nghiệp và nhân viên",
+    "pricing.basic.feature11": "• Sao lưu và khôi phục dữ liệu",
+    "pricing.basic.feature12": "• Quét NFC - Khởi tạo nhanh nhân viên"
 }

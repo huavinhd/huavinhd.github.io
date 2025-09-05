@@ -491,7 +491,18 @@
                 <ul class="text-white/70 text-sm space-y-2 mb-6 text-left">
                     <li data-i18n="pricing.basic.feature1">• Kết nối và tải giờ công</li>
                     <li data-i18n="pricing.basic.feature2">• Quy trình xử lý công tự động</li>
-                    <li>• Báo cáo tổng hợp công</li>
+                    <li data-i18n="pricing.basic.feature3">• Báo cáo tổng hợp công</li>
+                    <li data-i18n="pricing.basic.feature4">• Giới hạn số lượng 50 nhân viên</li>
+                    <li data-i18n="pricing.basic.feature5">• Hỗ trợ kỹ thuật trọn đời</li>
+                    <li data-i18n="pricing.basic.feature6">• Kết nối và thao tác với máy chấm công</li>
+                    <li data-i18n="pricing.basic.feature7">• Quản lí hồ sơ nhân viên</li>
+                    <li data-i18n="pricing.basic.feature8">• Quản lí chấm công</li>
+                    <li data-i18n="pricing.basic.feature9">• Thông báo ứng dụng và ngoài ứng dụng</li>
+                    <li data-i18n="pricing.basic.feature10">• Đồng bộ dữ liệu giữa app và máy chấm công, giữa tài khoản
+                        chủ doanh nghiệp và nhân viên</li>
+                    <li data-i18n="pricing.basic.feature11">• Sao lưu và khôi phục dữ liệu</li>
+                    <li data-i18n="pricing.basic.feature12">• Quét NFC - Khởi tạo nhanh nhân viên</li>
+
                 </ul>
                 <div class="mt-auto flex justify-center">
                     <!-- <button class="btn-modern btn-outline-modern px-2 py-3 rounded-[2rem]"
@@ -1037,7 +1048,7 @@
                     const apiResult = await apiRes.json();
 
                     if (apiResult?.result !== false) {
-                          alert(i18n[language].success_alert);
+                        alert(i18n[language].success_alert);
                         form.reset();
                     } else {
                         throw new Error("API trả về lỗi");
@@ -1049,7 +1060,7 @@
                 } finally {
                     // Enable lại nút submit
                     submitBtn.disabled = false;
-                     submitBtn.textContent = i18n[language].submit_button;
+                    submitBtn.textContent = i18n[language].submit_button;
                 }
             });
 
